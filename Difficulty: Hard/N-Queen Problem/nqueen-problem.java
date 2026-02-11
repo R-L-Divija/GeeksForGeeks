@@ -11,25 +11,15 @@ class Solution {
     }
     //checking left diagonal
     public boolean check2(int r,int c,int n){
-        for(int i=r-1;i>=0;i--){
-            for(int j=c-1;j>=0;j--){
-                if(r-c==i-j){
+        for(int i=r-1,j=c-1;i>=0&&j>=0;i--,j--){
                 if(v[i][j])return false;
-                break;
-                }
-            }
         }
         return true;
     }
       //checking right diagonal
     public boolean check3(int r,int c,int n){
-        for(int i=r-1;i>=0;i--){
-            for(int j=c+1;j<n;j++){
-                  if(r+c==i+j){
+        for(int i=r-1,j=c+1;i>=0&&j<n;i--,j++){
                 if(v[i][j])return false;
-                break;
-                }
-            }
         }
         return true;
     }

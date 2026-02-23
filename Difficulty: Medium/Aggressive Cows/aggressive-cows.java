@@ -1,5 +1,5 @@
 class Solution {
-    public boolean func(int[] a,int k,int m){
+    public boolean func(int a[],int k, int m){
         int c=1;
         int l=a[0];
         for(int i=1;i<a.length;i++){
@@ -7,19 +7,22 @@ class Solution {
                 c++;
                 l=a[i];
             }
-        }return c>=k;
+        }
+        return c>=k;
     }
-    public int aggressiveCows(int[] stalls, int k) {
-        Arrays.sort(stalls);
-       int l=1;
-       int h=stalls[stalls.length-1]-stalls[0];
-       int ans=0;
+    public int aggressiveCows(int[]a, int k) {
+        Arrays.sort(a);
+        int ans=0;
+        int l=1;
+        int h=a[a.length-1]-a[0];
         while(l<=h){
-            int m=l+(h-l)/2;
-            if(func(stalls,k,m)){
-                ans=m;
-                l=m+1;
-            }else h=m-1;
+            int mid=l+(h-l)/2;
+            if(func(a,k,mid)){
+                ans=mid;
+                l=mid+1;
+            }else{
+                h=mid-1;
+            }
         }
         return ans;
     }

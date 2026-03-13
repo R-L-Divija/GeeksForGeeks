@@ -1,24 +1,27 @@
+import java.util.*;
+
 class Solution {
+
     public int findMin(int n) {
-    int ans=0;
-    int rem=0;
-    
-    rem=n/10;
-     n=n%10;
-     ans+=rem;
-     
-     rem=n/5;
-     n=n%5;
-     ans+=rem;
-     
-     rem=n/2;
-     n=n%2;
-     ans+=rem;
-     
-     rem=n/1;
-     n=n%1;
-     ans+=rem;
-     
-     return ans;  
+
+        int[] coins = {1,2,5,10};
+
+        int[] dp = new int[n+1];
+
+        Arrays.fill(dp, Integer.MAX_VALUE);
+
+        dp[0] = 0;
+
+        for(int coin : coins){
+
+            for(int i = coin; i <= n; i++){
+
+                if(dp[i - coin] != Integer.MAX_VALUE)
+                    dp[i] = Math.min(dp[i], 1 + dp[i - coin]);
+
+            }
+        }
+
+        return dp[n] == Integer.MAX_VALUE ? 0 : dp[n];
     }
 }

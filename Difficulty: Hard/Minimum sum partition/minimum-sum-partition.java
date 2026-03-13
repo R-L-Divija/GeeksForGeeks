@@ -1,30 +1,25 @@
 // User function Template for Java
 
 class Solution {
-    
-    public int func(int index,int s1,int s,int[] arr,int dp[][]){
-        
-        if(index==arr.length){
+    public int func(int i,int s1,int s,int []arr,int dp[][]){
+        if(i==arr.length){
             int s2=s-s1;
-             return Math.abs(s1-s2);
-           
+            return Math.abs(s1-s2);
         }
-        if(dp[index][s1]!=-1)return dp[index][s1];
-        int t=func(index+1,s1+arr[index],s,arr,dp);
-        int nt=func(index+1,s1,s,arr,dp);
-        return dp[index][s1]=Math.min(t,nt);
-        
+        if(dp[i][s1]!=-1)return dp[i][s1];
+        int t=func(i+1,s1+arr[i],s,arr,dp);
+        int nt=func(i+1,s1,s,arr,dp);
+        return dp[i][s1]=Math.min(t,nt);
     }
     public int minDifference(int arr[]) {
-        int sum=0;
-        for(int x:arr){
-            sum+=x;
-        }
-        int dp[][]=new int[arr.length+1][sum+1];
-        for(int i=0;i<arr.length;i++){
-            Arrays.fill(dp[i],-1);
-        }
-         return func(0,0,sum,arr,dp);
-         
+        int s=0;
+       for(int x:arr){
+           s+=x;
+       }
+       int dp[][]=new int[arr.length][s+1];
+       for(int i=0;i<arr.length;i++){
+           Arrays.fill(dp[i],-1);
+       }
+       return func(0,0,s,arr,dp);
     }
 }

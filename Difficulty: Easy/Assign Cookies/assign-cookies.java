@@ -7,9 +7,7 @@ class Solution {
         int j=0;
          while(i<g.length && j<c.length){
              if(c[j]>=g[i]){
-              
                  i++;
-                 
              }
                  j++;
          }

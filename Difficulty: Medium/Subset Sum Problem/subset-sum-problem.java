@@ -69,7 +69,7 @@ class Solution {
     
     
 static boolean func(int i,int arr[],int s,int dp[][]){
-     if(s==0)return true;
+   
     if(i==arr.length){
         if(s==0)return true;
         return false;

@@ -16,7 +16,7 @@ class Solution {
        
        if(f==l)return true;
        if(f==1 && freq[i+1]==l)return true;
-        if (l - f == 1 && freq[24] == f) return true;
-        return false;
+       if (l - f == 1 && freq[24] == f) return true;
+       return false;
     }
 }

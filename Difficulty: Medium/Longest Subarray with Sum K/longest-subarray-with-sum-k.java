@@ -2,22 +2,25 @@
 
 class Solution {
     public int longestSubarray(int[] arr, int k) {
-    HashMap<Integer,Integer>map=new HashMap<>();
-    map.put(0,1);
-    int s=0;
-    int len=0;
-    for(int r=0;r<arr.length;r++){
-        s+=arr[r];
-        if(s==k){
-        len=r+1;
-        }
-      if(map.containsKey(s-k)){
-          len=Math.max(len,r-map.get(s-k));
-      }
-      map.putIfAbsent(s,r);
-    }
+     HashMap<Integer,Integer>map=new HashMap<>();
+     
+     int s=0;
+     int max=0;
+     
+     for(int r=0;r<arr.length;r++){
+         s+=arr[r];
+         if(s==k){
+             max=r+1;
+         }
+         if(map.containsKey(s-k)){
+             int l= r-map.get(s-k);
+             max=Math.max(max,l);
+         }
+         if(!map.containsKey(s)){
+             map.put(s,r);
+         }
+     }
     
-  return len;
-        
+      return max;
     }
 }

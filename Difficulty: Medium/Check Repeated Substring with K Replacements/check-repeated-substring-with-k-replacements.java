@@ -10,8 +10,10 @@ class Solution {
             map.put(s1,map.getOrDefault(s1,0)+1);}
             else map.put(s1,1);
         }
+        
         if(map.size()==1)return true;
         if(map.size()>2)return false;
+        
         Iterator<Integer> f=map.values().iterator();
         
         int a=f.next();

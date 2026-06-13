@@ -1,32 +1,37 @@
 class Solution {
     public static ArrayList<Integer> findUnion(int a[], int b[]) {
-        // code here
-         int i = 0, j = 0;
-        HashSet<Integer> set = new LinkedHashSet<>();
-        // ArrayList<Integer> list = new ArrayList<>();
-        while(i < a.length && j < b.length){
-            if(a[i] <= b[j]){
-                set.add(a[i]);
+        ArrayList<Integer>p=new ArrayList<>();
+        int i=0;
+        int j=0;
+        while(i<a.length && j<b.length){
+            if(a[i]<b[j]){
+            if( p.isEmpty() ||p.get(p.size()-1)!=a[i])
+                p.add(a[i]);
                 i++;
-            }
-            else{
-                set.add(b[j]);
-                j++;
-            }
+        } 
+                else if(a[i]>b[j]){
+                if(p.isEmpty() || p.get(p.size()-1)!=b[j])
+                    p.add(b[j]);
+                    j++;
+                }else{
+                    if(p.isEmpty() || p.get(p.size()-1)!=a[i])
+                    p.add(a[i]);
+                    i++;
+                    j++;
+                }
         }
-        if(i < a.length){
-            while(i < a.length){
-                set.add(a[i]);
-                i++;
-            }
+        while(i<a.length){
+            if(p.isEmpty() ||(p.get(p.size()-1)!=a[i])){
+            p.add(a[i]);}
+            i++;
+            
         }
-        else{
-            while(j < b.length){
-                set.add(b[j]);
-                j++;
-            }
+         while(j<b.length){
+             if(p.isEmpty() ||(p.get(p.size()-1)!=b[j])){
+            p.add(b[j]);}
+            j++;
+             
         }
-        return new ArrayList<Integer>(set);
-        
+        return p;
     }
 }

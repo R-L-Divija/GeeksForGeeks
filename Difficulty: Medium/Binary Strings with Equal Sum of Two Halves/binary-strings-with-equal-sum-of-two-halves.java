@@ -10,19 +10,16 @@ class Solution {
 
             a = (a * a) % MOD;
             b >>= 1;
-        }
-
-        return res;
+        }return res;
     }
 
     int computeValue(int n) {
         long f2 = 1, f1 = 1;
-
         for (int i = 1; i <= 2 * n; i++) {
-            f2 = (f2 * i) % MOD;
+            f2 = (f2*i) % MOD;
 
             if (i <= n)
-                f1 = (f1 * i) % MOD;
+                f1 = (f1*i) % MOD;
         }
 
         long inv = pow(f1, MOD - 2);

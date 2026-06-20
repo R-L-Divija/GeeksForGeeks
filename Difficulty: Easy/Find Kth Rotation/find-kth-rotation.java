@@ -1,17 +1,14 @@
 class Solution {
     public int findKRotation(int arr[]) {
         // Code here
-    Stack<Integer>st=new Stack<>();
-    for(int x:arr){
-        if(st.isEmpty())st.push(x);
-        else{
-        int t=st.peek();
-        if(t<x){
-            st.push(x);
-        }
-        }
+    int l=0;
+    int r=arr.length-1;
+    
+    while(l<r){
+        int m=l+(r-l)/2;
+        if(arr[m]>arr[r])l=m+1;
+        else r=m;
     }
-    if(st.size()==arr.length)return 0;
-    return st.size();
+    return l;
     }
 }

@@ -1,35 +1,37 @@
 class Solution {
-    public boolean func(int arr[],int k,int m){
-        int s=1;
-        int p=0;
-       for(int x:arr){
-           if(x>m)return false;
-           if(x+p<=m)p+=x;
-           else {
-               s++;
-               p=x;
-           }
-       }
-        return s<=k;
+    public boolean func(int a[],int k,int m){
+        int s=0;
+        int t=1;
+        for(int x:a){
+            if(x>m)return false;
+            if(s+x<=m){
+                s+=x;
+            }else{
+                t++;
+                s=x;
+            }
+        }
+       
+        return t<=k;
     }
     public int findPages(int[] arr, int k) {
-        // code here
-        if(k>arr.length)return -1;
-        int l=0;
-        int h=0;
-        int ans=0;
-        for(int x:arr){
-            l=Math.max(l,x);
-            h+=x;
-        }
-        while(l<h){
-            int m=l+(h-l)/2;
-            if(func(arr,k,m)){
-                
-                h=m;
-            }
-            else l=m+1;
-            }
-            return l;
+        if(arr.length<k)return -1;
+       int l=0;
+       int r=0;
+       int a=-1;
+       for(int x:arr){
+           l=Math.max(l,x);
+           r+=x;
+       }
+       
+       while(l<=r){
+           
+           int m=l+(r-l)/2;
+           if(func(arr,k,m)){
+               a=m;
+               r=m-1;
+           }else l=m+1;
+       }
+        return a;
     }
 }

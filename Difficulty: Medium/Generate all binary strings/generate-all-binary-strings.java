@@ -1,17 +1,17 @@
 class Solution {
-    ArrayList<String>temp;
-    void func(int n,String s){
-        if(s.length()==n)
-        {
-            temp.add(s);
+    ArrayList<String>ans;
+    public void func(String s,int n){
+        if(s.length()==n){
+            ans.add(s);
             return;
         }
-        func(n,s+"0");
-        func(n,s+"1");
+        func(s+"0",n);
+        func(s+"1",n);
     }
     public ArrayList<String> binstr(int n) {
-        temp=new ArrayList<>();
-        func(n,"");
-        return temp;
+      ans=new ArrayList<>();
+      func("",n);
+      return ans;
+        
     }
 }

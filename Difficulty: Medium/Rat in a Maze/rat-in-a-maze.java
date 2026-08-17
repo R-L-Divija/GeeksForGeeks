@@ -1,47 +1,30 @@
 class Solution {
-    ArrayList<String>ans;
-    StringBuilder temp;
-    public void func(int r,int c,int[][] maze,boolean[][] v){
+    ArrayList<String>p;
+    boolean v[][];
+    public void func(int r,int c,int maze[][] ,String s,boolean v[][]){
         int n=maze.length;
         int m=maze[0].length;
-        //check our current cell is valid or not
-        if(r<0||r>n-1||c<0||c>m-1||maze[r][c]==0||v[r][c])return;
-        if(r==n-1&&c==m-1){
-            ans.add(temp.toString());
+        if(r==n-1 &&c==m-1){
+            p.add(s);
             return;
         }
         v[r][c]=true;
-        
-        //Down
-        temp.append('D');
-        func(r+1,c,maze,v);
-        temp.deleteCharAt(temp.length() - 1);
-         //left
-        temp.append('L');
-        func(r,c-1,maze,v);
-        temp.deleteCharAt(temp.length() - 1);
-         //right
-        temp.append('R');
-        func(r,c+1,maze,v);
-        temp.deleteCharAt(temp.length() - 1);
-         //Up
-        temp.append('U');
-        func(r-1,c,maze,v);
-        temp.deleteCharAt(temp.length() - 1);
+        if(r+1<n&&maze[r+1][c]==1 && !v[r+1][c])func(r+1,c,maze,s+'D',v);
+        if(c-1>=0&&maze[r][c-1]==1 && !v[r][c-1])func(r,c-1,maze,s+'L',v);
+        if(c+1<m&&maze[r][c+1]==1 && !v[r][c+1])func(r,c+1,maze,s+'R',v);
+        if(r-1>=0&&maze[r-1][c]==1 && !v[r-1][c])func(r-1,c,maze,s+'U',v);
         
         v[r][c]=false;
-        
     }
     public ArrayList<String> ratInMaze(int[][] maze) {
-        ans=new ArrayList<>();
-        temp=new StringBuilder();
-        int r=maze.length;
-        int c=maze[0].length;
-        boolean[][] v=new boolean[r][c];
-     
-        if(maze[0][0]==1){
-        func(0,0,maze,v);
-        }
-        return ans;
+        int n=maze.length;
+        int m=maze[0].length;
+        v=new boolean[n][m];
+        p=new ArrayList<>();
+        if(maze[0][0] == 0 || maze[n-1][m-1] == 0)
+        return p;
+        func(0,0,maze,"",v);
+        return p;
+         
     }
 }
